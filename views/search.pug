@@ -1,0 +1,47 @@
+doctype html
+html(lang="en-gb")
+  head
+    title= config.pageTitle
+    link(rel="stylesheet", href="./vendor/normalize/normalize.css")
+    link(rel="stylesheet", href="./stylesheets/layout.css")
+    link(rel="stylesheet", href="./stylesheets/style.css")
+    link(rel="icon", href="./favicon.ico", type="image/x-icon")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(charset="utf-8")
+    meta(name="author", content="Kian Mayne")
+    meta(name="description", description="A web app to search a database.")
+    script(src=`./vendor/vue/vue${(process.env.NODE_ENV === 'production') ? '.min' : ''}.js`)
+    script.
+      var data = !{JSON.stringify({ query, results, environment: process.env.NODE_ENV })};
+  body
+    h1= config.pageTitle
+    main(class="search-container")
+      noscript You must have Javascript enabled to use this page.
+      unless process.env.NODE_ENV === 'production'
+        p Warning! Not production data.
+      form(class="query-form")
+        div( class="horizontal")
+          label(for="query") Search:
+          input(id="query", class="horizontal-main query", name="query",
+          type="search" v-model="query", autocomplete="off" autofocus)
+      hr
+      section(id="results", class="results")
+        transition(name="slight-delay-fade")
+          p(v-if="query === ''", class="placeholder-text fading-message") Enter your query into the box above
+        transition(name="delayed-fade")
+          div(v-if="waiting", class="spinner-container")
+            figure(class="spinner")
+        transition(name="slight-delay-fade")
+          p(v-if="noResults", class="no-results fading-message") No records found matching the query
+        section(id="records")
+          transition-group(name="instant-fade")
+            article(v-for="record in results", v-bind:key=`record.${config.search.keyField}`, class="record-info")
+              h2 {{record.#{config.search.headerField}}}
+              table
+                each field in config.search.displayFields
+                  tr
+                    td #{field.fieldLabel}:
+                    td {{record.#{field.fieldName} || 'N/A'}}
+        figure(class="spinner" v-if="pendingMoreResults")
+            
+    script(src="./javascripts/search.js")

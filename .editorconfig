@@ -1,0 +1,12 @@
+root = true
+
+[*]
+charset = utf-8
+# Indent style
+indent_style = space
+indent_size = 2
+# Big tab to make tabs obvious
+tab_width = 8
+# Whitespace style
+insert_final_newline = true
+trim_trailing_whitespace = true

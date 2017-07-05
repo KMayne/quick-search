@@ -1,0 +1,128 @@
+html {
+  font-family: Calibri;
+}
+
+body {
+  font-size: 1.2em;
+}
+
+.search-container {
+  border: 1px solid darkgrey;
+}
+
+.search-container > hr {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid lightblue;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.query {
+  border: 1px solid #CCC;
+  border-radius: 2px;
+}
+
+.record-info {
+  border: 1px solid #CCC;
+  border-radius: 2px;
+}
+
+.placeholder-text {
+  color: #AAA;
+}
+
+.fading-message {
+  overflow: hidden;
+  margin: 0;
+}
+
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-container {
+  overflow: hidden;
+  max-height: 30px;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #000;
+  border-top-color: transparent;
+  border-radius: 50%;
+  margin: 0 auto;
+  -webkit-animation: spinner 1.8s linear infinite;
+  animation: spinner 1.8s linear infinite;
+}
+
+.delayed-fade-enter, .delayed-fade-leave-to, .instant-fade-enter,
+ .instant-fade-leave-to, .slight-delay-fade-enter, .slight-delay-fade-leave-to  {
+  opacity: 0;
+  max-height: 0;
+  box-sizing: border-box;
+}
+
+.instant-fade-enter-to, .instant-fade-leave {
+  max-height: 250px;
+}
+
+.slight-delay-fade-enter-to, .slight-delay-fade-leave {
+  max-height: 22px;
+}
+
+.delayed-fade-enter-active {
+  transition: all 0.3s ease-in 0.3s;
+}
+
+.delayed-fade-leave-active {
+  transition: all 0.3s ease-out 0.3s;
+}
+
+.slight-delay-fade-enter-active {
+  transition: all 0.3s ease-in;
+}
+
+.slight-delay-fade-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.instant-fade-enter-active {
+  transition: all 0.3s ease-in;
+}
+
+.instant-fade-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.record-info {
+  overflow-y: hidden;
+}
+
+.more-results {
+  display: flex;
+  margin: 0 auto;
+  padding: 0.5em;
+}
+
+.more-results > span {
+  margin: 0 0.5em;
+}
