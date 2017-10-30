@@ -40,8 +40,8 @@ html(lang="en-gb")
               table
                 each field in config.search.displayFields
                   tr
-                    td #{field.fieldLabel}:
-                    td {{record.#{field.fieldName} || 'N/A'}}
+                    td #{field.label}:
+                    td {{record.#{field.columnName} || 'N/A'}}
         figure(class="spinner" v-if="pendingMoreResults")
             
     script(src="./javascripts/search.js")

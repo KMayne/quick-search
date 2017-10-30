@@ -9,7 +9,7 @@ const db = require('knex')(dbConfig);
 const searchConfig = require('./config').search;
 
 // Build field array
-const selectFields = searchConfig.displayFields.map(field => field.fieldName);
+const selectFields = searchConfig.displayFields.map(field => field.columnName);
 if (!selectFields.includes(searchConfig.headerField)) {
   selectFields.push(searchConfig.headerField);
 }
