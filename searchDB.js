@@ -1,9 +1,14 @@
-const knex = require('knex');
-const dbConfig = require('./knexfile');
-
-const db = knex(dbConfig[process.env.NODE_ENV || 'production']);
+// Load DB config
+const ENV = process.env.NODE_ENV;
+const dbConfig = require('./knexfile')[ENV];
+if (!dbConfig) {
+  console.error(`No database configuration found for environment "${ENV}"`);
+  process.exit(1);
+}
+const db = require('knex')(dbConfig);
 const searchConfig = require('./config').search;
 
+// Build field array
 const selectFields = searchConfig.displayFields.map(field => field.fieldName);
 if (!selectFields.includes(searchConfig.headerField)) {
   selectFields.push(searchConfig.headerField);
@@ -12,6 +17,7 @@ if (!selectFields.includes(searchConfig.keyField)) {
   selectFields.push(searchConfig.keyField);
 }
 
+// Ensure database connected
 db.raw('SELECT 1 AS connected FROM ' + searchConfig.tableName)
   .then(result => {
     if (result[0].connected !== 1) console.warn('Bad connected value.');
@@ -36,6 +42,7 @@ module.exports = function searchDB(queryString, offset) {
   }, query);
 };
 
+// Escape variable wildcards used in LIKE query
 function escapeWildcards(string) {
-  return string.replace(/[%[_]/g, '[$&]');
+  return string.replace(/[[%_]/g, '[$&]');
 }
