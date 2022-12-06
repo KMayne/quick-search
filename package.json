@@ -4,10 +4,10 @@
   "description": "A small web app to faciliate the search of a database.",
   "main": "bin/www",
   "dependencies": {
-    "body-parser": "~1.17.1",
+    "body-parser": "~1.20.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
-    "express": "~4.15.2",
+    "express": "~4.15.4",
     "knex": "^0.19.5",
     "morgan": "~1.8.1",
     "normalize.css": "^7.0.0",
